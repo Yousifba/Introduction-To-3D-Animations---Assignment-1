@@ -111,7 +111,6 @@ void Renderer::MouseProcessing(int button)
 		scn->data().MyTranslate(Eigen::Vector3f(-xrel / 2000.0f, 0, 0), OBJECT_AXIS);
 		scn->data().MyTranslate(Eigen::Vector3f(0, yrel / 2000.0f, 0), OBJECT_AXIS);
 	}
-	
 }
 
 Renderer::~Renderer()
@@ -136,19 +135,11 @@ float Renderer::Picking(double newx, double newy)
 		if (igl::unproject_onto_mesh(Eigen::Vector2f(x, y), view,
 			core().proj, core().viewport, scn->data().V, scn->data().F, fid, bc))
 		{
-			//Eigen::Matrix4f matrix =  view * core().view * core().proj;
-
 			Eigen::Vector3f click_pos = scn->data().V.row(scn->data().F.row(fid)[0]).cast<float>() * bc.x() + scn->data().V.row(scn->data().F.row(fid)[1]).cast<float>() * bc.y() + scn->data().V.row(scn->data().F.row(fid)[2]).cast<float>() * bc.z();;
 			float tmp_array[] = { click_pos.x(), click_pos.y(), click_pos.z(), 1 };
 			Eigen::Vector4f pos_vec = Eigen::Vector4f::Zero() + Eigen::Map<Eigen::Vector4f>(tmp_array);
 			pos_vec = view * pos_vec;
 
-			//std::cout << " " <<  scn->data().getTrans().rotation() * tmp << std::endl;
-			//tmp = scn->data().getTrans().rotation().inverse() * tmp;
-			//tmp = tmp * (scn->data().MakeTrans().row(0).x()) + tmp * (scn->data().MakeTrans().row(2).z()) + tmp * (scn->data().MakeTrans().row(1).y());
-
-			std::cout << " " << (pos_vec.z()) << std::endl;
-			//float tmp = scn->data().V.row(scn->data().F.row(fid)[2]).z() * scn->data().MakeTrans().col(0)[0] * scn->data().MakeTrans().col(0)[0] * scn->data().MakeTrans().col(0)[0];
 			return  (pos_vec.z());
 		}
 		return INT_MIN;

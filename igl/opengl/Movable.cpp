@@ -29,15 +29,14 @@ void Movable::MyTranslate(Eigen::Vector3f amt, int axis)
 						amt.x(), amt.y(), amt.z(), 0 };
 		Eigen::Matrix4f translation_matrix = Eigen::Map<Eigen::Matrix4f>(tmp);
 		T = translation_matrix + prev_transformation;
+
 		break;
 	}
 	case OBJECT_AXIS:
-		
 		T.translate(amt);
+
 		break;
 	}
-	
-	
 }
 //angle in radians
 void Movable::MyRotate(Eigen::Vector3f rotAxis, float angle)
@@ -48,5 +47,4 @@ void Movable::MyRotate(Eigen::Vector3f rotAxis, float angle)
 void Movable::MyScale(Eigen::Vector3f amt)
 {
 	T.scale(amt);
-	std::cout << T.matrix() << std::endl;
 }

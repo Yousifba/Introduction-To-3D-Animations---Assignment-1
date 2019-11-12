@@ -1,5 +1,5 @@
 ﻿  main.cpp
-C:\Dev\EngineIGLnew\tutorial/sandBox/inputManager.h(15,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Dev\EngineIGLnew\tutorial/sandBox/inputManager.h(14,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Dev\EngineIGLnew\tutorial/sandBox/inputManager.h(74,76): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Dev\EngineIGLnew\tutorial/sandBox/inputManager.h(74,65): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Dev\EngineIGLnew\tutorial/sandBox/inputManager.h(74,53): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data

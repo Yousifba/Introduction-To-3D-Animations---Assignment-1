@@ -5,7 +5,6 @@ static void glfw_mouse_press(GLFWwindow* window, int button, int action, int mod
 {
 
   Renderer* rndr = (Renderer*) glfwGetWindowUserPointer(window);
-	//TODO Refactoring...
   if (action == GLFW_PRESS)
   {
 	  double x2, y2;
@@ -14,13 +13,15 @@ static void glfw_mouse_press(GLFWwindow* window, int button, int action, int mod
 	  bool found = false;
 	  int i = 0, savedIndx = scn->selected_data_index;
 
+	  // Distances range is (-infinity, -1)
 	  float min_distance = INT_MIN, distance;
 	  int min_distance_index = -1;
 
-	  for (; i < scn->data_list.size() /*&& !found*/;i++)
+	  for (; i < scn->data_list.size(); i++)
 	  { 
 		  scn->selected_data_index = i;
 		  distance = rndr->Picking(x2, y2);
+
 		  if (distance > min_distance)
 		  {
 			  min_distance = distance;
@@ -36,11 +37,10 @@ static void glfw_mouse_press(GLFWwindow* window, int button, int action, int mod
 	  }
 	  else
 	  {
-		  std::cout << "found " << min_distance_index << std::endl;
+		  std::cout << "Found " << (min_distance_index == 0? "Sphere" : min_distance_index == 1 ? "Bunny" : "Cube") << ", Distance: " << min_distance << std::endl;
 		  scn->selected_data_index = min_distance_index;
 	  }
 	  rndr->UpdatePosition(x2, y2);
-	 
   }
 }
 
